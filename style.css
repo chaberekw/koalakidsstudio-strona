@@ -92,8 +92,21 @@ h3 { font-family: var(--f-tytul); font-weight: 800; font-size: 1.45rem; line-hei
 .bohater h1 .linia { display: block; }
 .bohater .wstep { font-size: 1.25rem; max-width: 34ch; margin: 22px 0 28px; font-weight: 700; }
 .bohater .przyciski { display: flex; gap: 14px; flex-wrap: wrap; }
-.bohater .koala { width: min(380px, 100%); justify-self: center; filter: drop-shadow(6px 8px 0 rgba(27, 42, 74, .18)); transform: rotate(4deg); }
-.podpis-banki { position: absolute; right: 16px; bottom: 10px; font-size: .8rem; color: var(--tekst-cichy); }
+.koala-miejsce { position: relative; justify-self: center; }
+.bohater .koala { width: min(380px, 100%); filter: drop-shadow(6px 8px 0 rgba(27, 42, 74, .18)); transform: rotate(4deg); }
+/* dymek przy koali: zachęta do pękania baniek (nie łapie kliknięć, żeby bańki pod nim dało się pękać) */
+.dymek {
+  position: absolute; top: 2%; left: -12%; z-index: 1; max-width: 9.5em; text-align: center; pointer-events: none;
+  font: 800 1.2rem/1.15 var(--f-tytul); color: var(--granat);
+  background: var(--papier); border: 3px solid var(--granat); border-radius: 22px; padding: 10px 16px 8px;
+  box-shadow: 4px 4px 0 var(--granat); transform: rotate(-6deg); animation: kiwanie 2.6s ease-in-out infinite;
+}
+.dymek::after {
+  content: ""; position: absolute; right: 26px; bottom: -11px; width: 16px; height: 16px;
+  background: var(--papier); border: solid var(--granat); border-width: 0 3px 3px 0; transform: rotate(45deg);
+}
+@keyframes kiwanie { 50% { transform: rotate(-2deg) translateY(-5px); } }
+@media (prefers-reduced-motion: reduce) { .dymek { animation: none; } }
 
 /* ---------- piosenki ---------- */
 section { padding-block: 72px; }
@@ -174,7 +187,10 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 
 @media (max-width: 760px) {
   .bohater { grid-template-columns: 1fr; padding-bottom: 48px; }
-  .bohater .koala { width: 210px; order: -1; justify-self: start; }
+  .koala-miejsce { order: -1; justify-self: start; }
+  .bohater .koala { width: 210px; }
+  .dymek { left: calc(100% + 4px); top: 14%; font-size: 1.05rem; max-width: 7.5em; transform: rotate(4deg); animation: none; }
+  .dymek::after { right: auto; left: -11px; bottom: 40%; border-width: 0 0 3px 3px; }
   .kontakt .karta { grid-template-columns: 1fr; }
   .piosenka:nth-child(n) { transform: none; }
 }
