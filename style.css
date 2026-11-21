@@ -1,0 +1,180 @@
+/* Koala Kids Studio — strona. Świat marki: niebo z bańkami (baner kanału) + napisy z granatowym obrysem (miniatury).
+   Układ: nagłówek-niebo z bańkami, piosenki jako „naklejki” z obrysem, sekcja dla rodziców, kontakt. Jeden jasny motyw. */
+:root {
+  --niebo: #7ec8f0;
+  --niebo-jasne: #d6f0fc;
+  --granat: #1b2a4a;
+  --slonce: #ffd93d;
+  --roz: #ff9aa2;
+  --mieta: #a7e9af;
+  --papier: #ffffff;
+  --tekst: #1b2a4a;
+  --tekst-cichy: #46567a;
+  --f-tytul: "Baloo 2", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  --f-tekst: "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+  --obrys: 0.09em;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--niebo-jasne);
+  color: var(--tekst);
+  font: 400 1.0625rem/1.6 var(--f-tekst);
+}
+img { max-width: 100%; display: block; }
+a { color: var(--granat); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--granat); outline-offset: 3px; border-radius: 6px; }
+
+.obrys {
+  font-family: var(--f-tytul);
+  font-weight: 800;
+  color: var(--slonce);
+  -webkit-text-stroke: var(--obrys) var(--granat);
+  paint-order: stroke fill;
+  letter-spacing: 0.01em;
+  line-height: 1.02;
+}
+.obrys.bialy { color: var(--papier); }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+h3 { font-family: var(--f-tytul); font-weight: 800; font-size: 1.45rem; line-height: 1.15; }
+
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+/* ---------- nagłówek ---------- */
+.gora {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--niebo) 0%, var(--niebo-jasne) 100%);
+  border-bottom: 4px solid var(--granat);
+}
+#banki { position: absolute; inset: 0; width: 100%; height: 100%; }
+.menu {
+  position: relative;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding-block: 18px;
+}
+.marka { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.marka img { width: 52px; height: auto; }
+.marka span { font-size: 1.6rem; --obrys: 0.12em; }
+.menu nav { display: flex; gap: 6px 22px; flex-wrap: wrap; align-items: center; }
+.menu nav a { font-weight: 700; text-decoration: none; }
+.menu nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.przycisk {
+  display: inline-flex; align-items: center; gap: 10px;
+  font: 800 1.1rem/1 var(--f-tytul);
+  padding: 14px 22px 12px;
+  border: 3px solid var(--granat);
+  border-radius: 999px;
+  background: var(--slonce);
+  color: var(--granat);
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--granat);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.przycisk:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--granat); }
+.przycisk:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--granat); }
+.przycisk.jasny { background: var(--papier); }
+.przycisk svg { width: 22px; height: 22px; flex: none; }
+.menu .przycisk { font-size: 1rem; padding: 10px 16px 8px; }
+
+.bohater {
+  position: relative;
+  display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 24px;
+  padding-block: 28px 64px;
+}
+.bohater h1 { font-size: clamp(3rem, 8.5vw, 6.4rem); }
+.bohater h1 .linia { display: block; }
+.bohater .wstep { font-size: 1.25rem; max-width: 34ch; margin: 22px 0 28px; font-weight: 700; }
+.bohater .przyciski { display: flex; gap: 14px; flex-wrap: wrap; }
+.bohater .koala { width: min(380px, 100%); justify-self: center; filter: drop-shadow(6px 8px 0 rgba(27, 42, 74, .18)); transform: rotate(4deg); }
+.podpis-banki { position: absolute; right: 16px; bottom: 10px; font-size: .8rem; color: var(--tekst-cichy); }
+
+/* ---------- piosenki ---------- */
+section { padding-block: 72px; }
+.naglowek-sekcji { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.naglowek-sekcji p { margin: 0; max-width: 46ch; color: var(--tekst-cichy); }
+.piosenki { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
+.piosenka {
+  display: flex; flex-direction: column;
+  background: var(--papier);
+  border: 3px solid var(--granat);
+  border-radius: 18px;
+  box-shadow: 6px 6px 0 var(--granat);
+  overflow: hidden;
+}
+.piosenka:nth-child(3n+1) { transform: rotate(-0.8deg); }
+.piosenka:nth-child(3n+2) { transform: rotate(0.6deg); }
+.piosenka:nth-child(3n) { transform: rotate(-0.3deg); }
+.piosenka .kadr { position: relative; aspect-ratio: 16 / 9; border-bottom: 3px solid var(--granat); }
+.piosenka .kadr img { width: 100%; height: 100%; object-fit: cover; }
+.znaczek {
+  position: absolute; bottom: 10px; left: 10px;  /* lewy dół: na miniaturach napisy są u góry, logo w prawym dole */
+  font: 800 .95rem/1 var(--f-tytul);
+  background: var(--slonce); color: var(--granat);
+  border: 2.5px solid var(--granat); border-radius: 999px;
+  padding: 7px 12px 5px; transform: rotate(-4deg);
+}
+.znaczek.juz { background: var(--mieta); }
+.piosenka .tresc { display: flex; flex-direction: column; gap: 12px; padding: 18px 20px 20px; flex: 1; }
+.piosenka .o { margin: 0; color: var(--tekst-cichy); font-size: 1rem; }
+.cytat {
+  margin: 0; padding: 10px 14px;
+  background: var(--niebo-jasne); border-left: 5px solid var(--niebo); border-radius: 0 10px 10px 0;
+  font-weight: 700; white-space: pre-line; font-size: 1rem;
+}
+.piosenka .akcja { margin-top: auto; padding-top: 4px; font-weight: 700; }
+
+/* ---------- dla rodziców ---------- */
+.rodzice { background: var(--papier); border-block: 4px solid var(--granat); }
+.zasady { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 40px; margin-top: 36px; }
+.zasada { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+.zasada .kolko {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 3px solid var(--granat); display: grid; place-items: center;
+  font: 800 1.5rem/1 var(--f-tytul);
+}
+.zasada:nth-child(4n+1) .kolko { background: var(--slonce); }
+.zasada:nth-child(4n+2) .kolko { background: var(--mieta); }
+.zasada:nth-child(4n+3) .kolko { background: var(--roz); }
+.zasada:nth-child(4n) .kolko { background: var(--niebo); }
+.zasada h3 { font-size: 1.25rem; margin-bottom: 4px; }
+.zasada p { margin: 0; color: var(--tekst-cichy); }
+
+/* ---------- kontakt + stopka ---------- */
+.kontakt { text-align: left; }
+.kontakt .karta {
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+  background: var(--slonce); border: 3px solid var(--granat); border-radius: 22px; box-shadow: 8px 8px 0 var(--granat);
+  padding: 32px clamp(20px, 4vw, 44px);
+}
+.kontakt .karta p { margin: 10px 0 0; font-weight: 700; }
+.kontakt .adres { font: 800 1.35rem/1.2 var(--f-tytul); word-break: break-all; }
+footer { padding-block: 28px 40px; color: var(--tekst-cichy); font-size: .95rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* ---------- polityka prywatności ---------- */
+.dokument { padding-block: 48px 72px; }
+.dokument article {
+  background: var(--papier); border: 3px solid var(--granat); border-radius: 20px; box-shadow: 6px 6px 0 var(--granat);
+  padding: clamp(22px, 5vw, 56px); max-width: 780px;
+}
+.dokument h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin-bottom: 8px; }
+.dokument h2 { font-family: var(--f-tytul); font-size: 1.5rem; -webkit-text-stroke: 0; color: var(--granat); margin: 32px 0 6px; }
+.dokument p, .dokument li { max-width: 65ch; }
+.dokument .data { color: var(--tekst-cichy); margin: 0 0 8px; }
+.dokument hr { border: 0; border-top: 3px dashed var(--niebo); margin: 44px 0 8px; }
+.gora.mala .menu { padding-block: 14px; }
+
+@media (max-width: 760px) {
+  .bohater { grid-template-columns: 1fr; padding-bottom: 48px; }
+  .bohater .koala { width: 210px; order: -1; justify-self: start; }
+  .kontakt .karta { grid-template-columns: 1fr; }
+  .piosenka:nth-child(n) { transform: none; }
+}
